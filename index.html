@@ -1271,7 +1271,11 @@
         'videos/hero6.mp4',
         'videos/hero7.mp4'
       ];
-      const DISPLAY_DURATION = 5000; // 各クリップの表示時間（ms）
+      // モバイル用クリップごとの水平位置（hero2だけ左寄り）
+      const mobilePos = ['72% center','28% center','72% center','72% center','72% center','72% center','72% center'];
+      const isMobile = window.innerWidth <= 640;
+
+      const DISPLAY_DURATION = 3500; // 各クリップの表示時間（ms）
       const FADE_DURATION = 1200;    // フェード時間（ms）
 
       const videoA = document.getElementById('heroVideoA');
@@ -1280,6 +1284,10 @@
       let currentIndex = 0;
       let active = videoA;
       let inactive = videoB;
+
+      function setPos(video, index) {
+        if (isMobile) video.style.objectPosition = mobilePos[index];
+      }
 
       function loadAndPlay(video, src) {
         video.src = src;
@@ -1290,12 +1298,14 @@
 
       // 初期クリップを再生
       loadAndPlay(videoA, clips[0]);
+      setPos(videoA, 0);
       videoA.style.opacity = '1';
 
       function crossfadeTo(nextIndex) {
         loadAndPlay(inactive, clips[nextIndex]);
         inactive.addEventListener('canplay', function onCanPlay() {
           inactive.removeEventListener('canplay', onCanPlay);
+          setPos(inactive, nextIndex);
           inactive.style.opacity = '1';
           active.style.opacity = '0';
           const prev = active;
