@@ -415,10 +415,28 @@
       grid-row: 1;
     }
     .past-photo-3 {
-      background-image: url('images/photo_speaker.jpg');
+      background-image: url('images/photo_venue.jpg');
       aspect-ratio: 4/3;
       grid-column: 2;
       grid-row: 2;
+    }
+
+    .past-video-wrap {
+      margin-top: 48px;
+      position: relative;
+    }
+    .past-video-label {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #9b8cc4;
+      margin-bottom: 12px;
+    }
+    .past-video {
+      width: 100%;
+      display: block;
+      outline: none;
     }
 
     /* ===== Gallery ===== */
@@ -1088,7 +1106,13 @@
       <div class="past-gallery">
         <div class="past-photo past-photo-1 stagger-item" role="img" aria-label="会場の様子"></div>
         <div class="past-photo past-photo-2 stagger-item" role="img" aria-label="参加者の笑顔"></div>
-        <div class="past-photo past-photo-3 stagger-item" role="img" aria-label="登壇者"></div>
+        <div class="past-photo past-photo-3 stagger-item" role="img" aria-label="会場の雰囲気"></div>
+      </div>
+      <div class="past-video-wrap fade-up">
+        <p class="past-video-label">Digest — 2025 Well Being Seminar</p>
+        <video class="past-video" controls preload="metadata" playsinline>
+          <source src="videos/past_digest.mp4" type="video/mp4">
+        </video>
       </div>
     </div>
   </section>
