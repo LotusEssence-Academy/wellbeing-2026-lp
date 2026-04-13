@@ -869,8 +869,8 @@
       .nav-logo { font-size: 0.82rem; }
       .nav-cta { font-size: 0.65rem; padding: 6px 12px; }
       /* ヒーロー */
-      .hero { min-height: 100svh; background-color: #000; }
-      .hero-video { object-fit: contain; object-position: center center; }
+      .hero { min-height: 100svh; }
+      .hero-video { object-fit: cover; object-position: center center; }
       .hero-content { padding: 88px 20px 52px; }
       .hero-meta { flex-direction: column; gap: 4px; text-align: center; }
       .hero-meta-sep { display: none; }
@@ -1262,7 +1262,16 @@
   <script>
     // ===== Hero Video Crossfade =====
     (function() {
-      const clips = [
+      const isMobile = window.innerWidth <= 640;
+      const clips = isMobile ? [
+        'videos/hero_p.mp4',
+        'videos/hero2_p.mp4',
+        'videos/hero3_p.mp4',
+        'videos/hero4_p.mp4',
+        'videos/hero5_p.mp4',
+        'videos/hero6_p.mp4',
+        'videos/hero7_p.mp4'
+      ] : [
         'videos/hero.mp4',
         'videos/hero2.mp4',
         'videos/hero3.mp4',
