@@ -611,6 +611,48 @@
       letter-spacing: 0.06em;
     }
 
+    /* 山﨑（フィーチャード・フル幅） */
+    .speakers-featured {
+      text-align: center;
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid #ede8f5;
+    }
+    .speaker-photo-featured {
+      width: 160px;
+      height: 200px;
+      border-radius: 0;
+      background-color: #e0dcf0;
+      background-size: cover;
+      background-position: center center;
+      margin: 0 auto 20px;
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .speaker-photo-featured:hover { opacity: 0.85; }
+
+    /* 中易・瀧本（デュオ・2列） */
+    .speakers-duo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      max-width: 560px;
+      margin: 0 auto 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid #ede8f5;
+    }
+    .speaker-duo-item { text-align: center; }
+    .speaker-photo-duo {
+      width: 120px;
+      height: 150px;
+      border-radius: 0;
+      background-color: #e0dcf0;
+      background-size: cover;
+      background-position: center center;
+      margin: 0 auto 16px;
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .speaker-photo-duo:hover { opacity: 0.85; }
+
     .speakers-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -998,25 +1040,32 @@
         <p class="speakers-special-bio">元教師・元社労士という異色の経歴を持つ「Sweet Aroma Home」オーナー。群馬で3児を育てながら、労働収入からオーナー収入へのシフトを発信。MLMの正攻法でアロマ起業を通じた自立の道を切り拓いてきた実践者。</p>
       </div>
 
-      <div class="speakers-grid">
-        <div class="speaker-item stagger-item">
-          <div class="speaker-photo speaker-photo-1"></div>
-          <p class="speaker-rank">WDD</p>
-          <p class="speaker-name">山﨑 恵理香</p>
-          <p class="speaker-bio">6,000人規模のAromaコミュニティ主宰。GALLUP認定ストレングスコーチ・著書出版・年商1億円達成。女性の自立に伴走し続けるリーダー。</p>
-        </div>
-        <div class="speaker-item stagger-item">
-          <div class="speaker-photo speaker-photo-2"></div>
+      <!-- 山﨑 恵理香（フィーチャード） -->
+      <div class="speakers-featured fade-up">
+        <div class="speaker-photo-featured speaker-photo-1"></div>
+        <p class="speakers-special-rank">WDD</p>
+        <p class="speakers-special-name">山﨑 恵理香</p>
+        <p class="speakers-special-bio">6,000人規模のAromaコミュニティ主宰。GALLUP認定ストレングスコーチ・著書出版・年商1億円達成。女性の自立に伴走し続けるリーダー。</p>
+      </div>
+
+      <!-- 中易・瀧本（デュオ） -->
+      <div class="speakers-duo fade-up">
+        <div class="speaker-duo-item">
+          <div class="speaker-photo-duo speaker-photo-2"></div>
           <p class="speaker-rank">BD</p>
           <p class="speaker-name">中易 真耶</p>
           <p class="speaker-bio">鍼灸師。妊娠・出産・生理など婦人科系の悩みに寄り添う「お悩み相談室」を展開。東洋医学と自然療法の観点から女性の心と体を整える。</p>
         </div>
-        <div class="speaker-item stagger-item">
-          <div class="speaker-photo speaker-photo-3"></div>
+        <div class="speaker-duo-item">
+          <div class="speaker-photo-duo speaker-photo-3"></div>
           <p class="speaker-rank">BD</p>
           <p class="speaker-name">瀧本 彩加</p>
           <p class="speaker-bio">「ズボラママ向け栄養コーチング」主宰。元ジャンキーママから食生活を一変。「NATU LABO」オンラインコミュニティを運営し、食育実践講座を展開。</p>
         </div>
+      </div>
+
+      <!-- 残り6名（DD） -->
+      <div class="speakers-grid">
         <div class="speaker-item stagger-item">
           <div class="speaker-photo speaker-photo-4"></div>
           <p class="speaker-rank">DD</p>
