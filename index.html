@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Well Being Seminar 2026 東京</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    /* ===== Reset & Base ===== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 400;
+      color: #2d2d3a;
+      line-height: 1.8;
+      background: #faf9f5;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; height: auto; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ===== Animation Base ===== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .fade-up.is-visible { opacity: 1; transform: translateY(0); }
+
+    .stagger-item {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .stagger-item.is-visible { opacity: 1; transform: translateY(0); }
+    .stagger-item:nth-child(1) { transition-delay: 0s; }
+    .stagger-item:nth-child(2) { transition-delay: 0.08s; }
+    .stagger-item:nth-child(3) { transition-delay: 0.16s; }
+    .stagger-item:nth-child(4) { transition-delay: 0.24s; }
+    .stagger-item:nth-child(5) { transition-delay: 0.32s; }
+    .stagger-item:nth-child(6) { transition-delay: 0.40s; }
+    .stagger-item:nth-child(7) { transition-delay: 0.48s; }
+    .stagger-item:nth-child(8) { transition-delay: 0.56s; }
+    .stagger-item:nth-child(9) { transition-delay: 0.64s; }
+
+    /* ===== Utility ===== */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 28px; }
+
+    .section-label {
+      display: inline-block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.22em;
+      color: #9b8cc4;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      text-align: center;
+      color: #2d2d3a;
+      letter-spacing: 0.06em;
+      line-height: 1.4;
+      margin-bottom: 56px;
+    }
+
+    .section-title span {
+      display: block;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      color: #9b8cc4;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    /* ===== Site Header ===== */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: 64px;
+      transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      border-bottom: 1px solid transparent;
+    }
+    .site-header.scrolled {
+      background: rgba(250, 249, 245, 0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom-color: #e8e4f0;
+    }
+    .site-nav {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.9);
+      text-transform: uppercase;
+      transition: color 0.4s ease;
+    }
+    .site-header.scrolled .nav-logo { color: #2d2d3a; }
+    .nav-cta {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      color: rgba(255,255,255,0.9);
+      border: 1px solid rgba(255,255,255,0.5);
+      padding: 7px 20px;
+      text-transform: uppercase;
+      transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+    }
+    .site-header.scrolled .nav-cta { color: #2d2d3a; border-color: #2d2d3a; }
+    .nav-cta:hover { background: rgba(123, 107, 189, 0.1); }
+    .site-header.scrolled .nav-cta:hover { background: #2d2d3a; color: #fff; }
+
+    /* ===== Hero ===== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background-color: #c4b8ec;
+    }
+
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .hero-video-b {
+      opacity: 0;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.58);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 100px 28px 60px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      letter-spacing: 0.28em;
+      color: rgba(255,255,255,0.85);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: hero-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 8vw, 5rem);
+      font-weight: 400;
+      font-style: italic;
+      color: #fff;
+      line-height: 1.1;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+      opacity: 0;
+      animation: hero-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+    }
+
+    .hero-title-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 400;
+      font-style: italic;
+      color: rgba(255,255,255,0.9);
+      letter-spacing: 0.04em;
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: hero-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.65s forwards;
+    }
+
+    .hero-catchcopy {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.92);
+      letter-spacing: 0.1em;
+      margin-bottom: 36px;
+      opacity: 0;
+      animation: hero-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.4);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 400;
+      padding: 5px 16px;
+      letter-spacing: 0.18em;
+      margin-bottom: 40px;
+      letter-spacing: 0.1em;
+      opacity: 0;
+      animation: hero-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.95s forwards;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px 24px;
+      margin-bottom: 44px;
+      opacity: 0;
+      animation: hero-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.1s forwards;
+    }
+
+    .hero-meta-item {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.95);
+      letter-spacing: 0.05em;
+    }
+
+    .hero-meta-item strong { font-weight: 700; }
+
+    .hero-meta-sep {
+      color: rgba(255,255,255,0.4);
+    }
+
+    .hero-cta-wrap {
+      opacity: 0;
+      animation: hero-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.25s forwards;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      border: 1px solid rgba(255,255,255,0.7);
+      color: #fff;
+      background: transparent;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 15px 52px;
+      border-radius: 0;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.15);
+      transform: translateY(101%);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 0;
+    }
+
+    .btn-primary span { position: relative; z-index: 1; }
+
+    .btn-primary:hover::before { transform: translateY(0); }
+
+    .hero-micro {
+      margin-top: 14px;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.72);
+      letter-spacing: 0.06em;
+    }
+
+    @keyframes hero-fade-up {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== Learn ===== */
+    .learn {
+      padding: 120px 0;
+      background: #faf9f5;
+    }
+
+    .learn-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      border-top: 1px solid #e8e4f0;
+      border-left: 1px solid #e8e4f0;
+    }
+
+    .learn-item {
+      padding: 48px 40px;
+      border-right: 1px solid #e8e4f0;
+      border-bottom: 1px solid #e8e4f0;
+      transition: background 0.3s ease;
+    }
+
+    .learn-item:hover { background: #fff; }
+
+    .learn-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 400;
+      color: #d4cce8;
+      line-height: 1;
+      margin-bottom: 16px;
+      letter-spacing: 0.02em;
+    }
+
+    .learn-item-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #2d2d3a;
+      line-height: 1.5;
+      letter-spacing: 0.04em;
+      margin-bottom: 8px;
+    }
+
+    .learn-item-desc {
+      font-size: 0.82rem;
+      color: #888;
+      line-height: 1.7;
+      letter-spacing: 0.02em;
+    }
+
+    /* ===== Past ===== */
+    .past {
+      padding: 120px 0;
+      background: #fff;
+    }
+
+    .past-lead {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .past-lead p {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.9;
+    }
+
+    .past-stat {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-top: 20px;
+    }
+
+    .past-stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 600;
+      color: #7b6bbd;
+      line-height: 1;
+    }
+
+    .past-stat-unit {
+      font-size: 0.85rem;
+      color: #7b6bbd;
+      font-weight: 500;
+    }
+
+    .past-gallery {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      grid-template-rows: auto auto;
+      gap: 8px;
+    }
+
+    .past-photo {
+      border-radius: 0;
+      background-color: #e8e4f0;
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .past-photo:hover { transform: translateY(-3px); opacity: 0.92; }
+    .past-photo-1 {
+      background-image: url('images/photo_hall.jpg');
+      aspect-ratio: 16/10;
+      grid-column: 1;
+      grid-row: 1 / 3;
+    }
+    .past-photo-2 {
+      background-image: url('images/photo_smile.jpg');
+      aspect-ratio: 4/3;
+      grid-column: 2;
+      grid-row: 1;
+    }
+    .past-photo-3 {
+      background-image: url('images/photo_speaker.jpg');
+      aspect-ratio: 4/3;
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    /* ===== Gallery ===== */
+    .gallery {
+      padding: 0;
+      background: #2d2d3a;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 240px);
+      gap: 3px;
+    }
+    .gallery-item {
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: default;
+    }
+    .gallery-item:hover { opacity: 0.85; }
+    .gallery-item:nth-child(1) {
+      grid-column: 1 / 3;
+      grid-row: 1;
+      background-image: url('images/photo_add_1.jpg');
+    }
+    .gallery-item:nth-child(2) {
+      grid-column: 3;
+      grid-row: 1;
+      background-image: url('images/photo_add_2.jpg');
+    }
+    .gallery-item:nth-child(3) {
+      grid-column: 1;
+      grid-row: 2;
+      background-image: url('images/photo_add_3.jpg');
+    }
+    .gallery-item:nth-child(4) {
+      grid-column: 2;
+      grid-row: 2;
+      background-image: url('images/photo_add_4.jpg');
+    }
+    .gallery-item:nth-child(5) {
+      grid-column: 3;
+      grid-row: 2;
+      background-image: url('images/photo_add_5.jpg');
+    }
+    @media (max-width: 640px) {
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(3, 180px);
+      }
+      .gallery-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1; }
+      .gallery-item:nth-child(2) { grid-column: 1; grid-row: 2; }
+      .gallery-item:nth-child(3) { grid-column: 2; grid-row: 2; }
+      .gallery-item:nth-child(4) { grid-column: 1; grid-row: 3; }
+      .gallery-item:nth-child(5) { grid-column: 2; grid-row: 3; }
+    }
+
+    /* ===== Voices ===== */
+    .voices {
+      padding: 120px 0;
+      background: #faf9f5;
+    }
+    .voices-list {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .voice-item {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 0 40px;
+      padding: 52px 0;
+      border-bottom: 1px solid #e0daf0;
+      align-items: start;
+    }
+    .voice-item:first-child { border-top: 1px solid #e0daf0; }
+    .voice-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 400;
+      color: #cdc6e8;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      padding-top: 4px;
+    }
+    .voice-body {}
+    .voice-quote-mark {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      line-height: 0.7;
+      color: #cdc6e8;
+      margin-bottom: 10px;
+      font-style: italic;
+      font-weight: 400;
+    }
+    .voice-text {
+      font-size: 0.96rem;
+      line-height: 2.1;
+      color: #3d3d4a;
+      letter-spacing: 0.03em;
+    }
+    .voice-initial {
+      margin-top: 20px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: #9b8cc4;
+      letter-spacing: 0.12em;
+      text-align: right;
+    }
+    @media (max-width: 640px) {
+      .voice-item { grid-template-columns: 40px 1fr; gap: 0 20px; padding: 36px 0; }
+      .voice-num { font-size: 2rem; }
+      .voice-text { font-size: 0.9rem; }
+    }
+
+    /* ===== Speakers ===== */
+    .speakers {
+      padding: 120px 0;
+      background: #faf9f5;
+    }
+
+    .speakers-special {
+      text-align: center;
+      margin-bottom: 64px;
+      padding-bottom: 64px;
+      border-bottom: 1px solid #ede8f5;
+    }
+
+    .speakers-special-label {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.28em;
+      color: #9b8cc4;
+      text-transform: uppercase;
+      border-bottom: 1px solid #c4b8e8;
+      padding: 0 0 8px;
+      margin-bottom: 28px;
+    }
+
+    .speaker-photo-special {
+      width: 160px;
+      height: 200px;
+      border-radius: 0;
+      background-color: #e0dcf0;
+      background-image: url('images/guest_negishi.jpg');
+      background-size: cover;
+      background-position: center center;
+      margin: 0 auto 24px;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .speaker-photo-special:hover { opacity: 0.88; }
+
+    .speakers-special-rank {
+      font-size: 0.8rem;
+      color: #9b8cc4;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .speakers-special-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 600;
+      color: #2d2d3a;
+      letter-spacing: 0.06em;
+    }
+
+    .speakers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 36px 24px;
+    }
+
+    .speaker-item { text-align: center; }
+
+    .speaker-photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 0;
+      background-color: #e0dcf0;
+      background-size: cover;
+      background-position: center center;
+      margin: 0 auto 16px;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .speaker-photo:hover { opacity: 0.85; }
+
+    .speaker-photo-1 { background-image: url('images/speaker_yamazaki.jpg'); }
+    .speaker-photo-2 { background-image: url('images/speaker_nakayi.jpg'); }
+    .speaker-photo-3 { background-image: url('images/speaker_takimoto.jpg'); }
+    .speaker-photo-4 { background-image: url('images/speaker_arai.jpg'); }
+    .speaker-photo-5 { background-image: url('images/speaker_mori.jpg'); }
+    .speaker-photo-6 { background-image: url('images/speaker_kato.jpg'); }
+    .speaker-photo-7 { background-image: url('images/speaker_ueda.jpg'); }
+    .speaker-photo-8 { background-image: url('images/speaker_furuya.jpg'); }
+    .speaker-photo-9 { background-image: url('images/speaker_nishioka.jpg'); }
+
+    .speaker-rank {
+      font-size: 0.72rem;
+      color: #9b8cc4;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .speaker-name {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #2d2d3a;
+      letter-spacing: 0.04em;
+      margin-bottom: 8px;
+    }
+
+    .speaker-bio {
+      font-size: 0.72rem;
+      color: #888;
+      line-height: 1.7;
+      letter-spacing: 0.02em;
+      text-align: left;
+    }
+
+    .speakers-special-bio {
+      max-width: 440px;
+      margin: 12px auto 0;
+      font-size: 0.82rem;
+      color: #666;
+      line-height: 1.85;
+      letter-spacing: 0.03em;
+    }
+
+    /* ===== Overview ===== */
+    .overview {
+      padding: 120px 0;
+      background: #fff;
+    }
+
+    .overview-table {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      border-collapse: collapse;
+    }
+
+    .overview-table tr { border-bottom: 1px solid #f0ecf8; }
+    .overview-table tr:first-child { border-top: 1px solid #f0ecf8; }
+
+    .overview-table th,
+    .overview-table td {
+      padding: 22px 16px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 0.92rem;
+    }
+
+    .overview-table th {
+      width: 100px;
+      font-weight: 700;
+      color: #7b6bbd;
+      white-space: nowrap;
+      letter-spacing: 0.04em;
+    }
+
+    .overview-table td { color: #444; line-height: 1.7; }
+
+    /* ===== CTA ===== */
+    .cta {
+      padding: 120px 0;
+      background: #2d2d3a;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('images/photo_group.jpg') center 30%/cover no-repeat;
+      opacity: 0.22;
+    }
+
+    .cta > * { position: relative; z-index: 1; }
+
+    .cta-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.28em;
+      color: rgba(255,255,255,0.8);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .cta-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.06em;
+      line-height: 1.4;
+      margin-bottom: 12px;
+    }
+
+    .cta-sub {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 48px;
+      letter-spacing: 0.04em;
+    }
+
+    .cta-buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+
+    .btn-cta {
+      display: inline-block;
+      border: 1px solid rgba(255,255,255,0.7);
+      color: #fff;
+      background: transparent;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 16px 64px;
+      border-radius: 0;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      min-width: 260px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: #fff;
+      transform: translateY(101%);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 0;
+    }
+
+    .btn-cta span { position: relative; z-index: 1; }
+
+    .btn-cta:hover { color: #2d2d3a; }
+    .btn-cta:hover::before { transform: translateY(0); }
+
+    .btn-cta-label {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 400;
+      color: #9b8cc4;
+      margin-top: 3px;
+      transition: color 0.35s ease;
+    }
+
+    .btn-cta:hover .btn-cta-label { color: rgba(255,255,255,0.7); }
+
+    .cta-note {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.8;
+    }
+
+    /* ===== Footer ===== */
+    .footer {
+      padding: 40px 28px;
+      background: #2d2d3a;
+      text-align: center;
+    }
+
+    .footer-text {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.06em;
+    }
+
+    /* ===== Responsive ===== */
+    @media (min-width: 768px) {
+      .cta-buttons { flex-direction: row; justify-content: center; gap: 20px; }
+    }
+
+    /* ===== Schedule ===== */
+    .schedule {
+      padding: 120px 0;
+      background: #faf9f5;
+    }
+    .schedule-note {
+      text-align: center;
+      font-size: 0.78rem;
+      color: #aaa;
+      letter-spacing: 0.08em;
+      margin-bottom: 48px;
+    }
+    .schedule-list {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .schedule-item {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 0 32px;
+      padding: 28px 0;
+      border-bottom: 1px solid #ede8f5;
+      align-items: start;
+    }
+    .schedule-item:first-child { border-top: 1px solid #ede8f5; }
+    .schedule-item.is-break { opacity: 0.5; }
+    .schedule-time {
+      display: inline-block;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 500;
+      color: #7b6bbd;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: #f0ecf8;
+      padding: 4px 10px;
+      white-space: nowrap;
+      margin-top: 2px;
+    }
+    .schedule-content {
+      font-size: 0.9rem;
+      color: #3d3d4a;
+      line-height: 1.7;
+      letter-spacing: 0.03em;
+    }
+    .schedule-item.is-break .schedule-content {
+      color: #bbb;
+      font-style: italic;
+      font-size: 0.82rem;
+    }
+
+    @media (max-width: 640px) {
+      /* ナビ */
+      .site-header { height: 56px; }
+      .nav-logo { font-size: 0.82rem; }
+      .nav-cta { font-size: 0.65rem; padding: 6px 12px; }
+      /* ヒーロー */
+      .hero-content { padding: 88px 20px 52px; }
+      .hero-meta { flex-direction: column; gap: 4px; text-align: center; }
+      .hero-meta-sep { display: none; }
+      .hero-meta-item { font-size: 0.82rem; }
+
+      /* セクション共通 */
+      .section-title { font-size: 1.5rem; margin-bottom: 36px; }
+      .container { padding: 0 20px; }
+
+      /* Learn */
+      .learn { padding: 72px 0; }
+      .learn-grid { grid-template-columns: 1fr; }
+      .learn-item { padding: 36px 24px; }
+
+      /* Past */
+      .past { padding: 72px 0 52px; }
+      .past-gallery { grid-template-columns: 1fr; gap: 10px; }
+
+      /* Voices */
+      .voices { padding: 80px 0 64px; }
+      .voice-item { grid-template-columns: 40px 1fr; gap: 0 20px; padding: 36px 0; }
+      .voice-num { font-size: 2rem; }
+      .voice-text { font-size: 0.88rem; }
+
+      /* Speakers */
+      .speakers { padding: 80px 0 72px; }
+      .speakers-grid { grid-template-columns: repeat(3, 1fr); gap: 24px 10px; }
+      .speaker-photo { width: 88px; height: 88px; }
+      .speaker-photo-special { width: 130px; height: 160px; }
+      .speaker-name { font-size: 0.78rem; }
+      .speaker-rank { font-size: 0.68rem; }
+      .speaker-bio { font-size: 0.68rem; }
+      .speakers-special-bio { font-size: 0.78rem; }
+
+      /* Schedule */
+      .schedule { padding: 72px 0; }
+      .schedule-item { grid-template-columns: 56px 1fr; gap: 0 16px; padding: 16px 0; }
+      .schedule-time { font-size: 0.88rem; }
+      .schedule-content { font-size: 0.84rem; }
+
+      /* Overview */
+      .overview { padding: 64px 0 80px; }
+      .overview-table { display: block; }
+      .overview-table tr { display: block; padding: 16px 0; border-bottom: 1px solid #f0ecf8; }
+      .overview-table tr:first-child { border-top: 1px solid #f0ecf8; }
+      .overview-table th,
+      .overview-table td { display: block; width: 100%; padding: 2px 0; }
+      .overview-table th { font-size: 0.75rem; color: #9b8cc4; margin-bottom: 4px; }
+      .overview-table td { font-size: 0.88rem; }
+
+      /* CTA */
+      .cta { padding: 80px 0; }
+      .cta-heading { font-size: 1.7rem; }
+      .btn-cta { width: 100%; max-width: 300px; padding: 15px 32px; min-width: auto; }
+      .btn-primary { padding: 14px 36px; width: 100%; max-width: 280px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== Site Header ===== -->
+  <header class="site-header" id="siteHeader">
+    <nav class="site-nav container">
+      <span class="nav-logo">Well Being Seminar</span>
+      <a href="https://luma.com/e9eyrdpe" target="_blank" rel="noopener noreferrer" class="nav-cta">参加を申し込む</a>
+    </nav>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <video class="hero-video" id="heroVideoA" autoplay muted playsinline></video>
+    <video class="hero-video hero-video-b" id="heroVideoB" muted playsinline></video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">2026 · Tokyo</p>
+      <h1 class="hero-title">Well Being</h1>
+      <p class="hero-title-sub">Seminar</p>
+      <p class="hero-catchcopy">会社・マーケ・働き方まで、1日で学べる。</p>
+      <span class="hero-badge">2026年は東京だけ!!</span>
+      <div class="hero-meta">
+        <span class="hero-meta-item"><strong>2026年7月29日（水）</strong> 10:00–17:00</span>
+        <span class="hero-meta-sep">|</span>
+        <span class="hero-meta-item">doTERRA Japan本社 B1</span>
+        <span class="hero-meta-sep">|</span>
+        <span class="hero-meta-item">¥3,000（事前振込）</span>
+      </div>
+      <div class="hero-cta-wrap">
+        <a href="https://luma.com/e9eyrdpe" target="_blank" rel="noopener noreferrer" class="btn-primary"><span>参加を申し込む</span></a>
+        <p class="hero-micro">昨年は全国4都市を巡回。2026年は東京だけ。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Learn ===== -->
+  <section class="learn">
+    <div class="container">
+      <h2 class="section-title fade-up">
+        <span>What you'll learn</span>
+        この1日で学べること
+      </h2>
+      <div class="learn-grid">
+        <div class="learn-item stagger-item">
+          <p class="learn-num">01</p>
+          <p class="learn-item-title">doTERRAの会社について</p>
+          <p class="learn-item-desc">ビジョン・ミッション・事業構造を<br>ダイヤモンドリーダーが語る。</p>
+        </div>
+        <div class="learn-item stagger-item">
+          <p class="learn-num">02</p>
+          <p class="learn-item-title">製品・ウェルネスの知識</p>
+          <p class="learn-item-desc">製品の正しい知識と、<br>健康的な生き方への実践。</p>
+        </div>
+        <div class="learn-item stagger-item">
+          <p class="learn-num">03</p>
+          <p class="learn-item-title">マーケティング・SNS発信</p>
+          <p class="learn-item-desc">届く言葉、届く発信の作り方。<br>実践者が使っている手法を公開。</p>
+        </div>
+        <div class="learn-item stagger-item">
+          <p class="learn-num">04</p>
+          <p class="learn-item-title">働き方・リーダーシップ</p>
+          <p class="learn-item-desc">自分らしい働き方と、<br>人を動かすリーダーシップの本質。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Past ===== -->
+  <section class="past">
+    <div class="container">
+      <h2 class="section-title fade-up">
+        <span>Track Record</span>
+        過去の開催実績
+      </h2>
+      <div class="past-lead fade-up">
+        <p>2025年、北海道・東京・大阪・愛知を巡り全国4都市で開催。<br>毎回、全国から参加者が集まり、「また参加したい」の声が届き続けました。</p>
+        <div class="past-stat">
+          <span class="past-stat-num">4</span>
+          <span class="past-stat-unit">都市巡回 ／ 2025年実績</span>
+        </div>
+      </div>
+      <div class="past-gallery">
+        <div class="past-photo past-photo-1 stagger-item" role="img" aria-label="会場の様子"></div>
+        <div class="past-photo past-photo-2 stagger-item" role="img" aria-label="参加者の笑顔"></div>
+        <div class="past-photo past-photo-3 stagger-item" role="img" aria-label="登壇者"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Gallery ===== -->
+  <section class="gallery">
+    <div class="gallery-grid">
+      <div class="gallery-item"></div>
+      <div class="gallery-item"></div>
+      <div class="gallery-item"></div>
+      <div class="gallery-item"></div>
+      <div class="gallery-item"></div>
+    </div>
+  </section>
+
+  <!-- ===== Voices ===== -->
+  <section class="voices">
+    <div class="container">
+      <h2 class="section-title fade-up">
+        <span>Voices</span>
+        参加者の声
+      </h2>
+      <div class="voices-list">
+        <div class="voice-item fade-up">
+          <span class="voice-num">01</span>
+          <div class="voice-body">
+            <span class="voice-quote-mark">"</span>
+            <p class="voice-text">ダイヤモンドになる覚悟を決めました。1日でこんなに整理できるとは思っていなかった。エリGの質の高さを肌で感じた1日でした。</p>
+            <p class="voice-initial">— K.M.</p>
+          </div>
+        </div>
+        <div class="voice-item fade-up">
+          <span class="voice-num">02</span>
+          <div class="voice-body">
+            <span class="voice-quote-mark">"</span>
+            <p class="voice-text">初めてひとりで飛行機に乗って参加しました。その行動をした事が、すでに成長だなと感じていて、自分の覚悟が行動に出た気がします。</p>
+            <p class="voice-initial">— S.A.</p>
+          </div>
+        </div>
+        <div class="voice-item fade-up">
+          <span class="voice-num">03</span>
+          <div class="voice-body">
+            <span class="voice-quote-mark">"</span>
+            <p class="voice-text">何度も涙しました。同じシングルマザーの方々の話を聞いて、本当に勇気をもらえました。迷ってないでやってみよう、という気持ちになりました。</p>
+            <p class="voice-initial">— S.S.</p>
+          </div>
+        </div>
+        <div class="voice-item fade-up">
+          <span class="voice-num">04</span>
+          <div class="voice-body">
+            <span class="voice-quote-mark">"</span>
+            <p class="voice-text">退屈になる時間がひと時もない1日でした。結果が出ずにいた自分が、やっぱりdoTERRAは間違いないと改めて強く思えた。</p>
+            <p class="voice-initial">— A.Y.</p>
+          </div>
+        </div>
+        <div class="voice-item fade-up">
+          <span class="voice-num">05</span>
+          <div class="voice-body">
+            <span class="voice-quote-mark">"</span>
+            <p class="voice-text">目から鱗でした。全然やってない、だからイマここなんだな、と目が覚めました。全国から参加者が集まるのも、納得できる内容でした。</p>
+            <p class="voice-initial">— M.H.</p>
+          </div>
+        </div>
+        <div class="voice-item fade-up">
+          <span class="voice-num">06</span>
+          <div class="voice-body">
+            <span class="voice-quote-mark">"</span>
+            <p class="voice-text">キラキラの裏にある困難を乗り越え、決断力と継続力を持ちやり続けた結果が今なんだと実感しました。全ては自分次第、と心に刻みました。</p>
+            <p class="voice-initial">— I.M.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Speakers ===== -->
+  <section class="speakers">
+    <div class="container">
+      <h2 class="section-title fade-up">
+        <span>Presenters</span>
+        登壇者紹介
+      </h2>
+
+      <div class="speakers-special fade-up">
+        <span class="speakers-special-label">Special Guest</span>
+        <div class="speaker-photo-special"></div>
+        <p class="speakers-special-rank">PD</p>
+        <p class="speakers-special-name">根岸 林乃</p>
+        <p class="speakers-special-bio">元教師・元社労士という異色の経歴を持つ「Sweet Aroma Home」オーナー。群馬で3児を育てながら、労働収入からオーナー収入へのシフトを発信。MLMの正攻法でアロマ起業を通じた自立の道を切り拓いてきた実践者。</p>
+      </div>
+
+      <div class="speakers-grid">
+        <div class="speaker-item stagger-item">
+          <div class="speaker-photo speaker-photo-1"></div>
+          <p class="speaker-rank">WDD</p>
+          <p class="speaker-name">山﨑 恵理香</p>
+          <p class="speaker-bio">6,000人規模のAromaコミュニティ主宰。GALLUP認定ストレングスコーチ・著書出版・年商1億円達成。女性の自立に伴走し続けるリーダー。</p>
+        </div>
+        <div class="speaker-item stagger-item">
+          <div class="speaker-photo speaker-photo-2"></div>
+          <p class="speaker-rank">BD</p>
+          <p class="speaker-name">中易 真耶</p>
+          <p class="speaker-bio">鍼灸師。妊娠・出産・生理など婦人科系の悩みに寄り添う「お悩み相談室」を展開。東洋医学と自然療法の観点から女性の心と体を整える。</p>
+        </div>
+        <div class="speaker-item stagger-item">
+          <div class="speaker-photo speaker-photo-3"></div>
+          <p class="speaker-rank">BD</p>
+          <p class="speaker-name">瀧本 彩加</p>
+          <p class="speaker-bio">「ズボラママ向け栄養コーチング」主宰。元ジャンキーママから食生活を一変。「NATU LABO」オンラインコミュニティを運営し、食育実践講座を展開。</p>
+        </div>
+        <div class="speaker-item stagger-item">
+          <div class="speaker-photo speaker-photo-4"></div>
+          <p class="speaker-rank">DD</p>
+          <p class="speaker-name">新井 佐奈</p>
+          <p class="speaker-bio">看護師歴20年・世界最高峰の不妊治療クリニックで10年勤務した女性ホルモンの専門家。ミネラルを活用したインナーケアと免疫講座を開催。</p>
+        </div>
+        <div class="speaker-item stagger-item">
+          <div class="speaker-photo speaker-photo-5"></div>
+          <p class="speaker-rank">DD</p>
+          <p class="speaker-name">森 優</p>
+          <p class="speaker-bio">シングルマザーからマイホームを実現。1,200名超のコミュニティを運営し、美容・無添加・自由な働き方を発信。社会貢献活動にも積極的に関わるリーダー。</p>
+        </div>
+        <div class="speaker-item stagger-item">
+          <div class="speaker-photo speaker-photo-6"></div>
+          <p class="speaker-rank">DD</p>
+          <p class="speaker-name">加藤 恵理</p>
+          <p class="speaker-bio">「女の生命力をひらく」をテーマに、カラダ・呼吸・香り・感情を整えるメソッドを提唱。ファスティングとフェミニンケア講座を通じて本来の自分に還る道を示す。</p>
+        </div>
+        <div class="speaker-item stagger-item">
+          <div class="speaker-photo speaker-photo-7"></div>
+          <p class="speaker-rank">DD</p>
+          <p class="speaker-name">植田 万里花</p>
+          <p class="speaker-bio">美容課金月10万円から0円へのシフトを実現。ナチュラルコスメ講座は1,200名以上が受講。「かわいいは世界を救う」を体現するライフスタイルリーダー。</p>
+        </div>
+        <div class="speaker-item stagger-item">
+          <div class="speaker-photo speaker-photo-8"></div>
+          <p class="speaker-rank">DD</p>
+          <p class="speaker-name">古屋 昌枝</p>
+          <p class="speaker-bio">ヘアメイク歴18年の開運メイク＆手作りコスメ講師。「アロマ×手作りコスメでキレイと夢を叶える」をテーマに、美と香りを融合させた独自スタイルを展開。</p>
+        </div>
+        <div class="speaker-item stagger-item">
+          <div class="speaker-photo speaker-photo-9"></div>
+          <p class="speaker-rank">DD</p>
+          <p class="speaker-name">西岡 彩子</p>
+          <p class="speaker-bio">「膣のお悩み解決する人」として、デリケートゾーンケアと膣育を分かりやすく発信。こっそり学べる講座とペットアロマなど、女性のQOL向上に幅広く貢献。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Schedule ===== -->
+  <section class="schedule">
+    <div class="container">
+      <h2 class="section-title fade-up">
+        <span>Program</span>
+        1日の流れ
+      </h2>
+      <p class="schedule-note fade-up">※ 昨年の開催内容をもとに構成しています。2026年の詳細プログラムは確定次第お知らせします。</p>
+      <div class="schedule-list">
+        <div class="schedule-item fade-up">
+          <span class="schedule-time">午前</span>
+          <span class="schedule-content">doTERRAとの出会いと「なぜ伝えるのか」——想いを言葉にするセッション。ロープレや実践ワークを交えながら、はじめての人も経験者も動ける状態をつくります。</span>
+        </div>
+        <div class="schedule-item is-break fade-up">
+          <span class="schedule-time">昼休憩</span>
+          <span class="schedule-content">会場内で参加者同士が交流できる時間。</span>
+        </div>
+        <div class="schedule-item fade-up">
+          <span class="schedule-time">午後前半</span>
+          <span class="schedule-content">製品の深い話——アロマ・ミネラル・サプリメント・スキンケアを体感しながら学ぶ。「知っている」を「伝えられる」に変えるセッション。</span>
+        </div>
+        <div class="schedule-item fade-up">
+          <span class="schedule-time">午後後半</span>
+          <span class="schedule-content">マーケティング・SNS活用・Emotional Care・目標設定ワーク。ビジネスを動かす思考と仕組みを、リーダーたちが実例とともに語ります。</span>
+        </div>
+        <div class="schedule-item fade-up">
+          <span class="schedule-time">終盤</span>
+          <span class="schedule-content">ダイヤモンドリーダーによるパネルディスカッション。「いま伝えたいこと」を飾らず、本音で語る時間。</span>
+        </div>
+        <div class="schedule-item is-break fade-up">
+          <span class="schedule-time">17:00</span>
+          <span class="schedule-content">終了</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Overview ===== -->
+  <section class="overview">
+    <div class="container">
+      <h2 class="section-title fade-up">
+        <span>Event Info</span>
+        開催概要
+      </h2>
+      <table class="overview-table fade-up">
+        <tr>
+          <th>日時</th>
+          <td>2026年7月29日（水）10:00 – 17:00</td>
+        </tr>
+        <tr>
+          <th>会場</th>
+          <td>
+            doTERRA Japan本社 B1<br>
+            〒106-0031 東京都港区西麻布3丁目5-5<br>
+            doTERRA Japanビル
+          </td>
+        </tr>
+        <tr>
+          <th>参加費</th>
+          <td>¥3,000（事前振込制）</td>
+        </tr>
+        <tr>
+          <th>主催</th>
+          <td>山﨑恵理香G Diamond Leaders</td>
+        </tr>
+        <tr>
+          <th>お申込み</th>
+          <td>下記ボタンよりお申し込みください</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta" id="apply">
+    <div class="container">
+      <p class="cta-eyebrow fade-up">Registration</p>
+      <h2 class="cta-heading fade-up">2026年7月29日。<br>この1日が、変わるきっかけになる。</h2>
+      <p class="cta-sub fade-up">doTERRA Japan本社 B1 ／ 参加費 ¥3,000 ／ 定員制・先着順</p>
+      <div class="cta-buttons fade-up">
+        <a href="https://luma.com/e9eyrdpe" target="_blank" rel="noopener noreferrer" class="btn-cta">
+          <span>参加を申し込む</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-text">Well Being Seminar 2026 — 7.29 Tokyo</p>
+      <p class="footer-text" style="margin-top:8px; font-size:0.7rem; opacity:0.5;">主催：山﨑恵理香G Diamond Leaders</p>
+    </div>
+  </footer>
+
+  <script>
+    // ===== Hero Video Crossfade =====
+    (function() {
+      const clips = [
+        'videos/hero.mp4',
+        'videos/hero2.mp4',
+        'videos/hero3.mp4',
+        'videos/hero4.mp4'
+      ];
+      const DISPLAY_DURATION = 5000; // 各クリップの表示時間（ms）
+      const FADE_DURATION = 1200;    // フェード時間（ms）
+
+      const videoA = document.getElementById('heroVideoA');
+      const videoB = document.getElementById('heroVideoB');
+
+      let currentIndex = 0;
+      let active = videoA;
+      let inactive = videoB;
+
+      function loadAndPlay(video, src) {
+        video.src = src;
+        video.load();
+        const p = video.play();
+        if (p) p.catch(() => {});
+      }
+
+      // 初期クリップを再生
+      loadAndPlay(videoA, clips[0]);
+      videoA.style.opacity = '1';
+
+      function crossfadeTo(nextIndex) {
+        loadAndPlay(inactive, clips[nextIndex]);
+        inactive.addEventListener('canplay', function onCanPlay() {
+          inactive.removeEventListener('canplay', onCanPlay);
+          inactive.style.opacity = '1';
+          active.style.opacity = '0';
+          const prev = active;
+          active = inactive;
+          inactive = prev;
+          // フェード完了後に古い動画を停止してメモリ節約
+          setTimeout(() => { prev.pause(); prev.src = ''; }, FADE_DURATION + 100);
+        });
+      }
+
+      // 一定間隔で切り替え
+      setInterval(() => {
+        currentIndex = (currentIndex + 1) % clips.length;
+        crossfadeTo(currentIndex);
+      }, DISPLAY_DURATION);
+    })();
+
+    // ===== Sticky Nav Scroll =====
+    const siteHeader = document.getElementById('siteHeader');
+    window.addEventListener('scroll', () => {
+      siteHeader.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // ===== IntersectionObserver for scroll animations =====
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-up, .stagger-item').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

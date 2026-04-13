@@ -1,0 +1,8 @@
+# 作業用コピー
+index_work_*.html
+
+# ダイジェスト動画（大容量）
+videos/digest.mp4
+
+# システム
+.DS_Store
