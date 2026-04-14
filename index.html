@@ -579,7 +579,7 @@
       text-transform: uppercase;
       border-bottom: 1px solid #c4b8e8;
       padding: 0 0 8px;
-      margin-bottom: 28px;
+      margin-bottom: 36px;
     }
 
     .speaker-photo-special {
@@ -591,10 +591,42 @@
       background-size: cover;
       background-position: center center;
       margin: 0 auto 24px;
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .speaker-photo-special:hover { opacity: 0.88; }
+
+    /* From doTERRA Japan */
+    .speakers-from-doterra {
+      text-align: center;
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid #ede8f5;
+    }
+    .speakers-from-doterra-grid {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+      margin-top: 0;
+    }
+    .speakers-from-doterra-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .speaker-photo-from-doterra {
+      width: 140px;
+      height: 175px;
+      background-color: #e0dcf0;
+      background-size: cover;
+      background-position: center top;
+      margin: 0 auto 20px;
+      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .speaker-photo-from-doterra:hover { opacity: 0.88; }
+    .speaker-photo-nate { background-image: url('images/speaker_nate.jpg'); }
+    .speaker-photo-hirai { background-image: url('images/speaker_hirai.jpg'); }
 
     .speakers-special-rank {
       font-size: 0.8rem;
@@ -685,6 +717,8 @@
     .speaker-photo-7 { background-image: url('images/speaker_ueda.jpg'); }
     .speaker-photo-8 { background-image: url('images/speaker_furuya.jpg'); }
     .speaker-photo-9 { background-image: url('images/speaker_nishioka.jpg'); }
+    .speaker-photo-10 { background-image: url('images/speaker_nate.jpg'); background-position: center top; }
+    .speaker-photo-11 { background-image: url('images/speaker_hirai.jpg'); background-position: center top; }
 
     .speaker-rank {
       font-size: 0.72rem;
@@ -1038,6 +1072,25 @@
         <p class="speakers-special-rank">PD</p>
         <p class="speakers-special-name">根岸 林乃</p>
         <p class="speakers-special-bio">元教師・元社労士という異色の経歴を持つ「Sweet Aroma Home」オーナー。群馬で3児を育てながら、労働収入からオーナー収入へのシフトを発信。MLMの正攻法でアロマ起業を通じた自立の道を切り拓いてきた実践者。</p>
+      </div>
+
+      <!-- From doTERRA Japan -->
+      <div class="speakers-from-doterra fade-up">
+        <span class="speakers-special-label">From doTERRA Japan</span>
+        <div class="speakers-from-doterra-grid">
+          <div class="speakers-from-doterra-item">
+            <div class="speaker-photo-from-doterra speaker-photo-nate"></div>
+            <p class="speakers-special-rank">代表取締役社長</p>
+            <p class="speakers-special-name">Nate Farnsworth</p>
+            <p class="speakers-special-bio">doTERRA Japan代表取締役社長。doTERRAのミッションと日本市場への想いを語る。</p>
+          </div>
+          <div class="speakers-from-doterra-item">
+            <div class="speaker-photo-from-doterra speaker-photo-hirai"></div>
+            <p class="speakers-special-rank">BDマネージャー</p>
+            <p class="speakers-special-name">平井 萌</p>
+            <p class="speakers-special-bio">doTERRA Japan BDマネージャー。ビルダーとの最前線に立ち、現場の声に寄り添いながらリーダー育成を支える。</p>
+          </div>
+        </div>
       </div>
 
       <!-- 山﨑 恵理香（フィーチャード） -->
