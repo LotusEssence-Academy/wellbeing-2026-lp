@@ -1085,12 +1085,55 @@
       cursor: not-allowed !important;
       pointer-events: none !important;
     }
-    .apply-locked-label {
-      display: block;
-      font-size: 0.72rem;
+    /* Nav ボタン下ラベル */
+    .nav-cta-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 5px;
+    }
+    .nav-lock-label {
+      font-size: 0.62rem;
       letter-spacing: 0.08em;
-      color: #999;
-      margin-top: 10px;
+      color: rgba(255,255,255,0.65);
+      white-space: nowrap;
+    }
+    .site-header.scrolled .nav-lock-label { color: #999; }
+    /* Hero ボタン下ラベル */
+    .hero-lock-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.7);
+      margin-top: 14px;
+      text-align: center;
+    }
+    /* CTA カウントダウン */
+    .cta-countdown {
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+      margin-top: 28px;
+    }
+    .cta-cd-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .cta-cd-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 6vw, 3rem);
+      font-weight: 300;
+      color: #fff;
+      line-height: 1;
+      min-width: 2ch;
+      text-align: center;
+    }
+    .cta-cd-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
     }
   </style>
 </head>
@@ -1100,7 +1143,9 @@
   <header class="site-header" id="siteHeader">
     <nav class="site-nav container">
       <span class="nav-logo">Well Being Seminar</span>
-      <a href="https://luma.com/e9eyrdpe" target="_blank" rel="noopener noreferrer" class="nav-cta">参加を申し込む</a>
+      <div class="nav-cta-wrap" id="navCtaWrap">
+        <a href="https://luma.com/e9eyrdpe" target="_blank" rel="noopener noreferrer" class="nav-cta">参加を申し込む</a>
+      </div>
     </nav>
   </header>
 
@@ -1474,13 +1519,57 @@
       const target = new Date('2026-04-20T19:00:00+09:00').getTime();
       if (Date.now() >= target) return;
 
-      document.querySelectorAll('a[href*="luma.com"]').forEach(function(a) {
-        a.classList.add('apply-locked');
-        const label = document.createElement('span');
-        label.className = 'apply-locked-label';
-        label.textContent = '4月20日（月）19:00 申込開始';
-        a.parentNode.insertAdjacentElement('afterend', label);
-      });
+      function pad(n) { return String(n).padStart(2, '0'); }
+
+      // 1. Nav ボタン：グレーアウト ＋ 下にテキスト
+      const navBtn = document.querySelector('#navCtaWrap .nav-cta');
+      if (navBtn) {
+        navBtn.classList.add('apply-locked');
+        const lbl = document.createElement('span');
+        lbl.className = 'nav-lock-label';
+        lbl.id = 'navLockLabel';
+        lbl.textContent = '4/20（月）19:00 申込開始';
+        navBtn.insertAdjacentElement('afterend', lbl);
+      }
+
+      // 2. Hero ボタン：グレーアウト ＋ 下にテキスト
+      const heroBtn = document.querySelector('.hero-cta-wrap .btn-primary');
+      if (heroBtn) {
+        heroBtn.classList.add('apply-locked');
+        const lbl = document.createElement('p');
+        lbl.className = 'hero-lock-label';
+        lbl.textContent = '4月20日（月）19:00 申込開始';
+        heroBtn.closest('.hero-cta-wrap').insertAdjacentElement('afterend', lbl);
+      }
+
+      // 3. CTA ボタン：グレーアウト ＋ カウントダウン
+      const ctaBtn = document.querySelector('.cta-buttons .btn-cta');
+      if (ctaBtn) {
+        ctaBtn.classList.add('apply-locked');
+        const cd = document.createElement('div');
+        cd.className = 'cta-countdown';
+        cd.innerHTML =
+          '<div class="cta-cd-unit"><span class="cta-cd-num" id="cd-d">--</span><span class="cta-cd-label">Days</span></div>' +
+          '<div class="cta-cd-unit"><span class="cta-cd-num" id="cd-h">--</span><span class="cta-cd-label">Hours</span></div>' +
+          '<div class="cta-cd-unit"><span class="cta-cd-num" id="cd-m">--</span><span class="cta-cd-label">Min</span></div>' +
+          '<div class="cta-cd-unit"><span class="cta-cd-num" id="cd-s">--</span><span class="cta-cd-label">Sec</span></div>';
+        ctaBtn.closest('.cta-buttons').insertAdjacentElement('afterend', cd);
+
+        function tick() {
+          const diff = target - Date.now();
+          if (diff <= 0) {
+            cd.remove();
+            ctaBtn.classList.remove('apply-locked');
+            return;
+          }
+          document.getElementById('cd-d').textContent = pad(Math.floor(diff / 86400000));
+          document.getElementById('cd-h').textContent = pad(Math.floor((diff % 86400000) / 3600000));
+          document.getElementById('cd-m').textContent = pad(Math.floor((diff % 3600000) / 60000));
+          document.getElementById('cd-s').textContent = pad(Math.floor((diff % 60000) / 1000));
+          setTimeout(tick, 1000);
+        }
+        tick();
+      }
     })();
 
     // ===== Hero Video Crossfade =====
