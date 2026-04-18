@@ -795,6 +795,52 @@
 
     .overview-table td { color: #444; line-height: 1.7; }
 
+    /* ===== Food Bank ===== */
+    .foodbank {
+      padding: 80px 0;
+      background: #ffffff;
+    }
+    .foodbank-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      border: 1px solid #e8e4f0;
+      border-radius: 2px;
+      padding: 48px 56px;
+      text-align: center;
+    }
+    .foodbank-eyebrow {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #9b8cc4;
+      margin-bottom: 20px;
+    }
+    .foodbank-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #2d2d3a;
+      margin-bottom: 20px;
+      line-height: 1.7;
+    }
+    .foodbank-body {
+      font-size: 0.9rem;
+      color: #555;
+      line-height: 1.9;
+    }
+    .foodbank-note {
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 0.82rem;
+      color: #7b6bbd;
+      border-top: 1px solid #e8e4f0;
+      padding-top: 16px;
+      width: 100%;
+    }
+    @media (max-width: 640px) {
+      .foodbank-inner { padding: 36px 24px; }
+    }
+
     /* ===== CTA ===== */
     .cta {
       padding: 120px 0;
@@ -1366,6 +1412,22 @@
           <td>下記ボタンよりお申し込みください</td>
         </tr>
       </table>
+    </div>
+  </section>
+
+  <!-- ===== Food Bank ===== -->
+  <section class="foodbank">
+    <div class="container">
+      <div class="foodbank-inner fade-up">
+        <p class="foodbank-eyebrow">Healing Hands — Food Bank</p>
+        <p class="foodbank-title">フードバンクへのご協力をお願いいたします</p>
+        <p class="foodbank-body">
+          本イベントにご参加の皆様には、お一人様1品以上の<br>
+          フードバンクへの食材寄贈にご協力をお願いしております。<br>
+          お持ちいただく際は、賞味期限が3ヶ月以上残っているものをお選びください。
+        </p>
+        <span class="foodbank-note">お米・レトルト食品・乾麺・調味料・生理用品など ／ 同一商品の複数持参も歓迎</span>
+      </div>
     </div>
   </section>
 
