@@ -1077,8 +1077,107 @@
       .btn-primary { padding: 14px 36px; width: 100%; max-width: 280px; text-align: center; }
     }
   </style>
+
+  <style>
+    /* ===== Coming Soon ===== */
+    #coming-soon {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #faf9f5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 24px;
+      transition: opacity 0.8s ease;
+    }
+    #coming-soon.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .cs-eyebrow {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #9b8cc4;
+      margin-bottom: 32px;
+    }
+    .cs-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 7vw, 3.6rem);
+      font-weight: 400;
+      color: #2d2d3a;
+      line-height: 1.3;
+      letter-spacing: 0.04em;
+      margin-bottom: 12px;
+    }
+    .cs-date {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+      color: #7b6bbd;
+      letter-spacing: 0.15em;
+      margin-bottom: 56px;
+    }
+    .cs-countdown {
+      display: flex;
+      gap: 40px;
+      margin-bottom: 56px;
+    }
+    .cs-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .cs-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 8vw, 4rem);
+      font-weight: 300;
+      color: #2d2d3a;
+      line-height: 1;
+      min-width: 2ch;
+    }
+    .cs-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #aaa;
+    }
+    .cs-divider {
+      width: 40px;
+      height: 1px;
+      background: #e8e4f0;
+      margin: 0 auto 48px;
+    }
+    .cs-open {
+      font-size: 0.82rem;
+      color: #888;
+      letter-spacing: 0.08em;
+    }
+    @media (max-width: 480px) {
+      .cs-countdown { gap: 24px; }
+    }
+  </style>
 </head>
 <body>
+
+  <!-- ===== Coming Soon ===== -->
+  <div id="coming-soon">
+    <p class="cs-eyebrow">Well Being Seminar 2026 — Tokyo</p>
+    <h1 class="cs-title">Coming Soon</h1>
+    <p class="cs-date">7.29 — doTERRA Japan 本社</p>
+    <div class="cs-countdown">
+      <div class="cs-unit"><span class="cs-num" id="cs-d">--</span><span class="cs-label">Days</span></div>
+      <div class="cs-unit"><span class="cs-num" id="cs-h">--</span><span class="cs-label">Hours</span></div>
+      <div class="cs-unit"><span class="cs-num" id="cs-m">--</span><span class="cs-label">Min</span></div>
+      <div class="cs-unit"><span class="cs-num" id="cs-s">--</span><span class="cs-label">Sec</span></div>
+    </div>
+    <div class="cs-divider"></div>
+    <p class="cs-open">4月20日（月）19:00 公開予定</p>
+  </div>
 
   <!-- ===== Site Header ===== -->
   <header class="site-header" id="siteHeader">
@@ -1453,6 +1552,45 @@
   </footer>
 
   <script>
+    // ===== Coming Soon =====
+    (function() {
+      const target = new Date('2026-04-20T19:00:00+09:00').getTime();
+      const el = document.getElementById('coming-soon');
+
+      function pad(n) { return String(n).padStart(2, '0'); }
+
+      function tick() {
+        const now = Date.now();
+        const diff = target - now;
+
+        if (diff <= 0) {
+          el.classList.add('hidden');
+          document.body.style.overflow = '';
+          setTimeout(() => el.remove(), 900);
+          return;
+        }
+
+        const d = Math.floor(diff / 86400000);
+        const h = Math.floor((diff % 86400000) / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+
+        document.getElementById('cs-d').textContent = pad(d);
+        document.getElementById('cs-h').textContent = pad(h);
+        document.getElementById('cs-m').textContent = pad(m);
+        document.getElementById('cs-s').textContent = pad(s);
+
+        setTimeout(tick, 1000);
+      }
+
+      if (Date.now() < target) {
+        document.body.style.overflow = 'hidden';
+        tick();
+      } else {
+        el.remove();
+      }
+    })();
+
     // ===== Hero Video Crossfade =====
     (function() {
       const clips = [
